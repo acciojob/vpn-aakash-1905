@@ -49,20 +49,24 @@ public class UserServiceImpl implements UserService {
                 country.setCountryName(CountryName.AUS);
                 country.setCode(CountryName.AUS.toCode());
             }
+
+            country.setUser(user); //reverse linking
             user.setOriginalCountry(country);
             user.setConnected(false); //vpn main goal
 
             String code = country.getCode()+"."+userRepository3.save(user).getId();
             user.setOriginalIp(code); //new
-            country.setUser(user); //reverse linking
-            countryRepository3.save(country);
+
+            userRepository3.save(user);
+
+
         }
-        else{
-            //means country not found
+        else{  //means user is null
             throw new Exception("Country not found");
         }
         return user;
     }
+
 
     @Override
     public User subscribe(Integer userId, Integer serviceProviderId) {

@@ -12,7 +12,7 @@ public class Country{
     private CountryName countryName;
     private String code;
 
-    @OneToOne(mappedBy = "originalCountry",cascade = CascadeType.ALL)
+    @OneToOne
     private User user;
     @ManyToOne
     @JoinColumn
