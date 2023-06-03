@@ -17,13 +17,13 @@ public class User {
 
     @ManyToMany
     @JoinColumn
-    private List<ServiceProvider> serviceProviders = new ArrayList<>();
+    private List<ServiceProvider> serviceProviderList = new ArrayList<>();
     @OneToMany(mappedBy = "user",cascade = CascadeType.ALL)
     private List<Connection> connectionList = new ArrayList<>();
 
     @OneToOne
     @JoinColumn
-    private Country country;
+    private Country originalCountry;
 
     public User() {
 
@@ -77,12 +77,12 @@ public class User {
         this.connected = connected;
     }
 
-    public List<ServiceProvider> getServiceProviders() {
-        return serviceProviders;
+    public List<ServiceProvider> getServiceProviderList() {
+        return serviceProviderList;
     }
 
-    public void setServiceProviders(List<ServiceProvider> serviceProviders) {
-        this.serviceProviders = serviceProviders;
+    public void setServiceProviderList(List<ServiceProvider> serviceProviderList) {
+        this.serviceProviderList = serviceProviderList;
     }
 
     public List<Connection> getConnectionList() {
@@ -93,12 +93,12 @@ public class User {
         this.connectionList = connectionList;
     }
 
-    public Country getCountry() {
-        return country;
+    public Country getOriginalCountry() {
+        return originalCountry;
     }
 
-    public void setCountry(Country country) {
-        this.country = country;
+    public void setOriginalCountry(Country country) {
+        this.originalCountry = country;
     }
 
     public User(int id, String username, String password, String originalIp, String maskedIp, Boolean connected, List<ServiceProvider> serviceProviders, List<Connection> connectionList, Country country) {
@@ -108,8 +108,8 @@ public class User {
         this.originalIp = originalIp;
         this.maskedIp = maskedIp;
         this.connected = connected;
-        this.serviceProviders = serviceProviders;
+        this.serviceProviderList = serviceProviders;
         this.connectionList = connectionList;
-        this.country = country;
+        this.originalCountry = country;
     }
 }
